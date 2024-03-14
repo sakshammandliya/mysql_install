@@ -1,0 +1,192 @@
+---
+- hosts: mysql_server
+  become: yes
+  vars:
+    mysql_version: "5.7"
+    mysql_package: "mysql-community-server-{{ mysql_version }}"
+    mysql_repo_rpm: mysql57-community-release-e17.rpm"
+    mysql_root_password: "SAK#sham@97555SM"
+  tasks:
+    - name: Copy MySQL RPM to remote host
+      copy:
+          src: /home/saksham/mysql_repo/mysql57-community-release-e17.rpm
+          dest: /tmp/{{ mysql_repo_rpm }}
+
+    - name: Install MySQL repository
+      apt:
+        name: "{{ mysql_package }}"
+        state: present
+ 
+    - name: Start MySQL service
+      service:
+         name: mysqld
+         state: started
+         enabled: yes
+    
+    - name: Secure MySQL installation
+      expect:
+         command: mysql_secure_installation
+         responses:
+              ' Enter current password for root (enter for none):': "
+              ' Set root password? [Y/n]': 'Y'
+              ' New password:': "{{ mysql_root_password }}"
+              ' Re-enter new password:': "{{ mysql_root_password }}"
+              ' Remove anonymous users? [Y/n]': 'Y'
+              ' Disallow root login remotely? [Y/n]': 'Y'
+              ' Remove test database and access to it? [Y/n]': 'Y'
+              ' Reload privilege tables now? [Y/n]': 'Y' 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+B
+B
+B
+B
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+B
+B
+B
+B
+B
+B
+B
+B
+B
+B
+B
+B
+B
+B
+B
+B
+B
+B
+B
+B
+B
+B
+B
+B
+B
+B
+B
+B
+B
+B
+B
+B
+B
+B
+B
+B
+B
+B
+B
+B
+B
+B
+B
+B
+B
+B
+B
+B
+B
+B
+B
+B
+B
+B
+ 
+

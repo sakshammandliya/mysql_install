@@ -1,0 +1,13 @@
+---
+- name: Updata apt cache
+  apt: update_cache=yes
+- name: Install MySQL 5.7
+  apt:
+    name: mysql-server-5.7
+    state: present
+
+- name: Start MySQL service
+  service:
+     name: mysql
+     state: started
+     enabled: yes
